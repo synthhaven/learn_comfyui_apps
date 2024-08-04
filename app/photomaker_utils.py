@@ -11,7 +11,7 @@ import os
 from pydantic import BaseModel
 
 # We load our workflow here
-LINKEDIN_PHOTOMAKER_PATH = "/workspace/SynthhavenAPI/repositories/ComfyUI/custom_nodes/ComfyUI_IK_demo/ui/linkedin_photomaker.json"
+LINKEDIN_PHOTOMAKER_PATH = "/workspace/learn_comfyui_apps/app/workflows/linkedin_photomaker.json"
 # Server configuration
 SERVER_ADDRESS = "0.0.0.0:9000"
 SERVER_URL = f"http://{SERVER_ADDRESS}"
