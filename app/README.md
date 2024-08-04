@@ -12,3 +12,11 @@ It also contains a server to interface.
 
 
 * **websocket_client.py**: A simple server to receive messages from ComfyUI. You won't have to touch this file
+
+# How to run the UI
+
+Simply run
+
+```bash
+python linkedin_photomaker.py
+```
