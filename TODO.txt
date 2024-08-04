@@ -1,0 +1,39 @@
+EXTENSION_LINKS
+
+
+Models: 
+
+    Halcyon_image_generator i: /workspace/Fooocus/models/checkpoints/halcyonSDXL_v18-mid_299933-vid_655762.safetensors
+    Xinsir_controlnet
+
+Extensions:
+    Comfy-Inspire-Pack
+    Comfy-Impact-Pack
+    ComfyUI-BRIA_AI-RMBG: Needs /workspace/SynthhavenAPI/repositories/ComfyUI/custom_nodes/ComfyUI-BRIA_AI-RMBG/RMBG-1.4/removebkgmodel.safetensors in SynthhavenAPI/repositories/ComfyUI/custom_nodes/ComfyUI-BRIA_AI-RMBG
+    ComfyUI_FaceAnalysis
+    ComfyUI_essentials
+    ComfyUI_InstantID: Needs to make a /workspace/SynthhavenAPI/repositories/ComfyUI/models/insightface inside of models. Then, you need to add the content there of /workspace/SynthhavenAPI/repositories/ComfyUI/models/insightface/models/antelopev2 
+    ComfyUI-IPAdapterPlus: Needs clipvision models and all the different IP Adapter models
+    ComfyUI-Manager
+    ComfyUI-Impact-Pack
+    comfyui-tooling-nodes: Will need custom extension, build it on class. Used for the nsfw node as well.
+
+
+### Example of extra_model_paths.yaml
+comfyui:
+    base_path: path/to/comfyui/
+    checkpoints: models/checkpoints/
+    clip: models/clip/
+    clip_vision: models/clip_vision/
+    configs: models/configs/
+    controlnet: models/controlnet/
+    embeddings: models/embeddings/
+    loras: | 
+        models/loras/
+        models/loras/lcm/
+    upscale_models: models/upscale_models/
+    # vae: models/vae/
+    tensorrt: models/tensorrt/
+    ultralytics: modes/ultralytics/
+
+requirements: Figure it out as we go
