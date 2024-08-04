@@ -1,56 +1,33 @@
-
-import gradio as gr
-from threading import Thread
-# Start websocket client needs to be updated with the photomaker handler.
-from websocket_client import start_websocket_client, message_queue
-import time
-import base64
-from PIL import Image
-from io import BytesIO
-import asyncio
-# This will be used from the ui
-from photomaker_utils import run_photomaker_workflow
-
-latest_message = ""
-latest_image = None
-
-# Function to process messages from the WebSocket client
-# Function to process messages from the WebSocket client
-
-# There are a few differences here.
-# Namely, we will have ways to upload images. In the button press, the
-# UI needs to send the request to server
-
 import gradio as gr
 from threading import Thread
 import json
 import uuid
 import base64
 from PIL import Image
-import io
+from io import BytesIO
 import time
 from websocket_client import start_websocket_client_photomaker, message_queue, WS_SERVER_URL, DEFAULT_CLIENT_ID
 from photomaker_utils import run_photomaker_workflow
+
+
+# Variables we use to update our UI
 latest_message = ""
 latest_image = None
-
 DEFAULT_CLIENT_ID = "06a96135-59b2-4a29-b7c8-a83fc011ea63"
 
 
-# Function to process messages from the WebSocket client
 # Function to process messages from the WebSocket client
 def update_message():
     print("Starting Message update coroutine")
     global latest_message, latest_image
     while True:
-        # print(message_queue)
         if not message_queue.empty():
-            print(f"SOMETHING HIT THE QUQE")
+            # Uncomment to debug
+            print(f"SOMETHING HIT THE QUEUE")
             print(f"The queue has {len(list(message_queue.queue))}")
             print(f"The call to empty gives me {message_queue.empty()}")
             msg = message_queue.get()
             print(f"Message keys are: {msg.keys()}")
-            # result_image_b64
 
             # Check if the message contains image data
             if "result_image_b64" in msg.keys():
