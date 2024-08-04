@@ -16,7 +16,7 @@ If you're on runpod, run
 
 ```
 git clone https://github.com/synthhaven/learn_comfyui_apps.git
-cd learn_comfy_ui_apps
+cd learn_comfyui_apps
 ```
 
 Now, we will install comfyui, the necessary extensions and all the project requirements. Run these lines, one after the other.
