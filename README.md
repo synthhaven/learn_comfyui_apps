@@ -1,5 +1,10 @@
-# learn_comfyui_apps
+# Creating Your Very Own Linkedin Photo Generator
+![Our UI](comfy_interface.png)
+![Generated Image](american%20psycho.webp))
+
+
 This repository showcases an example of how to create a comfyui app that can generate custom profile pictures for your social media. It also demonstrates how you can run comfy wokrflows behind a user interface
+
 
 # Creating your runpod container:
 
@@ -24,7 +29,7 @@ source class_venv/bin/activate
 pip install -r requirements.txt
 
 # now, we will install comfyui inside the repository
-comfy --workspace=./ComfyUi install
+comfy --workspace=./ComfyUI install
 ```
 
 This will install comfyUI.
@@ -46,7 +51,7 @@ Finally, we can run our comfyui server. Run the following command. You will then
 
 
 ```bash
-comfy --workspace=./ComfyUi launch -- --port 9000 --listen 0.0.0.0 --enable-cors-header '*'
+comfy --workspace=./ComfyUI launch -- --port 9000 --listen 0.0.0.0 --enable-cors-header '*'
 ```
 
 # Using ComfyUI
