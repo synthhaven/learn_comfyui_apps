@@ -15,7 +15,7 @@ Follow the instructions on the class document to setup runpod:
 If you're on runpod, run 
 
 ```
-git clone THIS_REPO_URL
+git clone https://github.com/synthhaven/learn_comfyui_apps.git
 cd learn_comfy_ui_apps
 ```
 
