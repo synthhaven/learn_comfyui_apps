@@ -20,7 +20,7 @@ WS_SERVER_URL = f"ws://{SERVER_ADDRESS}/ws"
 
 # Unique client ID for tracking the session
 DEFAULT_CLIENT_ID = "06a96135-59b2-4a29-b7c8-a83fc011ea63"
-with open(LINKEDIN_PHOTOMAKER_PATH, "rb") as f:
+with open(LINKEDIN_PHOTOMAKER_PATH, "r") as f:
     PHOTOMAKER_WORKFLOW = json.load(f)
 
 # Function to run the workflow synchronously

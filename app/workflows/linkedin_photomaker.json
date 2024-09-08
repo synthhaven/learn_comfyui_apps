@@ -1,0 +1,392 @@
+{
+    "1": {
+      "inputs": {
+        "ckpt_name": "halcyonSDXL_v18-mid_299933-vid_655762.safetensors"
+      },
+      "class_type": "CheckpointLoaderSimple",
+      "_meta": {
+        "title": "Load Checkpoint"
+      }
+    },
+    "3": {
+      "inputs": {
+        "text": "A portrait of a businessman wearing a black suit, shoulders up shot, 27 years old, long beard, pale skin, depth of field, dominant, high technology background, mood focused, lighting soft, natural light, perspective close-up, warm color pallete, 100mm, dominant",
+        "clip": [
+          "1",
+          1
+        ]
+      },
+      "class_type": "CLIPTextEncode",
+      "_meta": {
+        "title": "CLIP Text Encode (Prompt)"
+      }
+    },
+    "4": {
+      "inputs": {
+        "text": "watermark, stock photo, hard shadows",
+        "clip": [
+          "1",
+          1
+        ]
+      },
+      "class_type": "CLIPTextEncode",
+      "_meta": {
+        "title": "CLIP Text Encode (Prompt)"
+      }
+    },
+    "5": {
+      "inputs": {
+        "instantid_file": "SDXL/ip-adapter.bin"
+      },
+      "class_type": "InstantIDModelLoader",
+      "_meta": {
+        "title": "Load InstantID Model"
+      }
+    },
+    "8": {
+      "inputs": {
+        "provider": "CUDA"
+      },
+      "class_type": "InstantIDFaceAnalysis",
+      "_meta": {
+        "title": "InstantID Face Analysis"
+      }
+    },
+    "13": {
+      "inputs": {
+        "control_net_name": "SDXL/instantid/diffusion_pytorch_model.safetensors"
+      },
+      "class_type": "ControlNetLoader",
+      "_meta": {
+        "title": "Load ControlNet Model"
+      }
+    },
+    "14": {
+      "inputs": {
+        "image": "ric2.webp",
+        "upload": "image"
+      },
+      "class_type": "LoadImage",
+      "_meta": {
+        "title": "Load Image"
+      }
+    },
+    "17": {
+      "inputs": {
+        "pixels": [
+          "59",
+          0
+        ],
+        "vae": [
+          "1",
+          2
+        ]
+      },
+      "class_type": "VAEEncode",
+      "_meta": {
+        "title": "VAE Encode"
+      }
+    },
+    "18": {
+      "inputs": {
+        "samples": [
+          "17",
+          0
+        ],
+        "vae": [
+          "1",
+          2
+        ]
+      },
+      "class_type": "VAEDecode",
+      "_meta": {
+        "title": "VAE Decode"
+      }
+    },
+    "19": {
+      "inputs": {
+        "images": [
+          "18",
+          0
+        ]
+      },
+      "class_type": "PreviewImage",
+      "_meta": {
+        "title": "Preview Image"
+      }
+    },
+    "20": {
+      "inputs": {
+        "seed": 918395102796056,
+        "steps": 60,
+        "cfg": 3,
+        "sampler_name": "dpmpp_3m_sde_gpu",
+        "scheduler": "karras",
+        "denoise": 1,
+        "model": [
+          "62",
+          0
+        ],
+        "positive": [
+          "62",
+          1
+        ],
+        "negative": [
+          "62",
+          2
+        ],
+        "latent_image": [
+          "27",
+          0
+        ]
+      },
+      "class_type": "KSampler",
+      "_meta": {
+        "title": "KSampler"
+      }
+    },
+    "21": {
+      "inputs": {
+        "samples": [
+          "20",
+          0
+        ],
+        "vae": [
+          "1",
+          2
+        ]
+      },
+      "class_type": "VAEDecode",
+      "_meta": {
+        "title": "VAE Decode"
+      }
+    },
+    "22": {
+      "inputs": {
+        "images": [
+          "21",
+          0
+        ]
+      },
+      "class_type": "PreviewImage",
+      "_meta": {
+        "title": "Preview Image"
+      }
+    },
+    "23": {
+      "inputs": {
+        "image": "ric1.webp",
+        "upload": "image"
+      },
+      "class_type": "LoadImage",
+      "_meta": {
+        "title": "Load Image"
+      }
+    },
+    "27": {
+      "inputs": {
+        "width": 896,
+        "height": 1152,
+        "batch_size": 1
+      },
+      "class_type": "EmptyLatentImage",
+      "_meta": {
+        "title": "Empty Latent Image"
+      }
+    },
+    "39": {
+      "inputs": {
+        "shadow_threshold": 75,
+        "shadow_factor": 1.5,
+        "shadow_smoothing": 0.25,
+        "highlight_threshold": 175,
+        "highlight_factor": 0.5,
+        "highlight_smoothing": 0.30000000000000004,
+        "simplify_isolation": 0,
+        "image": [
+          "75",
+          0
+        ]
+      },
+      "class_type": "Image Shadows and Highlights",
+      "_meta": {
+        "title": "Image Shadows and Highlights"
+      }
+    },
+    "40": {
+      "inputs": {
+        "images": [
+          "39",
+          1
+        ]
+      },
+      "class_type": "PreviewImage",
+      "_meta": {
+        "title": "Preview Image"
+      }
+    },
+    "42": {
+      "inputs": {
+        "images": [
+          "39",
+          2
+        ]
+      },
+      "class_type": "PreviewImage",
+      "_meta": {
+        "title": "Preview Image"
+      }
+    },
+    "43": {
+      "inputs": {
+        "images": [
+          "39",
+          0
+        ]
+      },
+      "class_type": "PreviewImage",
+      "_meta": {
+        "title": "Preview Image"
+      }
+    },
+    "53": {
+      "inputs": {
+        "detect_hand": "enable",
+        "detect_body": "enable",
+        "detect_face": "disable",
+        "resolution": 512,
+        "image": [
+          "77",
+          0
+        ]
+      },
+      "class_type": "OpenposePreprocessor",
+      "_meta": {
+        "title": "OpenPose Pose"
+      }
+    },
+    "54": {
+      "inputs": {
+        "images": [
+          "53",
+          0
+        ]
+      },
+      "class_type": "PreviewImage",
+      "_meta": {
+        "title": "Preview Image"
+      }
+    },
+    "57": {
+      "inputs": {},
+      "class_type": "BRIA_RMBG_ModelLoader_Zho",
+      "_meta": {
+        "title": "🧹BRIA_RMBG Model Loader"
+      }
+    },
+    "58": {
+      "inputs": {
+        "rmbgmodel": [
+          "57",
+          0
+        ],
+        "image": [
+          "75",
+          0
+        ]
+      },
+      "class_type": "BRIA_RMBG_Zho",
+      "_meta": {
+        "title": "🧹BRIA RMBG"
+      }
+    },
+    "59": {
+      "inputs": {
+        "image": [
+          "58",
+          0
+        ]
+      },
+      "class_type": "SplitImageWithAlpha",
+      "_meta": {
+        "title": "Split Image with Alpha"
+      }
+    },
+    "62": {
+      "inputs": {
+        "ip_weight": 1,
+        "cn_strength": 0.6,
+        "start_at": 0,
+        "end_at": 1,
+        "noise": 0.1,
+        "combine_embeds": "average",
+        "instantid": [
+          "5",
+          0
+        ],
+        "insightface": [
+          "8",
+          0
+        ],
+        "control_net": [
+          "13",
+          0
+        ],
+        "image": [
+          "59",
+          0
+        ],
+        "model": [
+          "1",
+          0
+        ],
+        "positive": [
+          "3",
+          0
+        ],
+        "negative": [
+          "4",
+          0
+        ],
+        "image_kps": [
+          "77",
+          0
+        ]
+      },
+      "class_type": "ApplyInstantIDAdvanced",
+      "_meta": {
+        "title": "Apply InstantID Advanced"
+      }
+    },
+    "74": {
+      "inputs": {
+        "unique_id": "TEST_LINKEDIN",
+        "images": [
+          "21",
+          0
+        ]
+      },
+      "class_type": "ETN_SendImageWebSocketWithId",
+      "_meta": {
+        "title": "Send Image with ID(WebSocket)"
+      }
+    },
+    "75": {
+      "inputs": {
+        "image": ""
+      },
+      "class_type": "ETN_LoadImageBase64",
+      "_meta": {
+        "title": "Load Image (Base64)"
+      }
+    },
+    "77": {
+      "inputs": {
+        "image": ""
+      },
+      "class_type": "ETN_LoadImageBase64",
+      "_meta": {
+        "title": "Load Image (Base64)"
+      }
+    }
+  }
