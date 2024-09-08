@@ -27,8 +27,51 @@ Finally, we can run our comfyui server. Run the following command. You will then
 
 
 ```bash
-comfy --workspace=./ComfyUI launch -- --port 9000 --listen 0.0.0.0 --enable-cors-header '*'
+comfy --workspace=/workspace/learn_comfyui_apps/ComfyUI/ launch -- --port 9000 --listen 0.0.0.0 --enable-cors-header '*'
 ```
+
+
+# Workflows:
+
+Refer to app/workflows/linkedin_photomaker_solution.json for a finished comfyUI app. 
+
+In order to run the server, run the commands 
+
+```bash
+cd app
+python run_photomaker.py
+```
+
+Then, go to Runpod and click on **Connect**. You will see your application on port 9002.
+
+
+
+# How to turn the workflow I made in class into the server?
+
+This repository already comes with the comfy_to_ui_extension. This extension is already copied when you run the `build_and_run_server.sh` 
+and it gets loaded as a custom node inside of ComfyUI. This node lets you send data into your ComfyUI instance from an external application and get results back.
+
+The only thing you need to do is the following. First examine app/photomaker_utils.py in line 50. You will see something that looks like this:
+
+``` python
+
+PHOTOMAKER_SPEC = {
+    # positive prompt will map to
+    "unique_id": "31",
+    # TWO IMAGES WE USED
+    "identity_input" : "29",
+    "pose_input": "30", 
+    ## THE PROMPT WE USED 
+    "image_style_positive_prompt": "6",
+    ## THE BATCH SIZE WE WERE USING.
+    "batch_size_node" : "5",
+}
+
+```
+
+This corresponds to the inputs we want to feed from the outside to comfy. Click at the solution workflow, and see what nodes the numbers "31", "29", "30", etc map to. Do the same thing for your workflow.
+
+
 
 # Using ComfyUI
 

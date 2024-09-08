@@ -36,6 +36,8 @@ git clone https://github.com/cubiq/ComfyUI_InstantID.git
 
 # Cd back to ComfyUI directory
 cd /workspace/learn_comfyui_apps/ComfyUI/
+# Copy the custom extension
+cp -R /workspace/learn_comfyui_apps/comfy_to_ui_extension  /workspace/learn_comfyui_apps/ComfyUI/custom_nodes
 
 # Install dependencies for all extensions
 for dir in /workspace/learn_comfyui_apps/ComfyUI/custom_nodes/*; do
