@@ -17,33 +17,9 @@ If you're on runpod, run
 ```
 git clone https://github.com/synthhaven/learn_comfyui_apps.git
 cd learn_comfyui_apps
+source ./build_and_run_server.sh
 ```
-
-Now, we will install comfyui, the necessary extensions and all the project requirements. Run these lines, one after the other.
-First, run 
-
-```bash
-# This will create a virtual environment
-python -m venv class_venv
-source class_venv/bin/activate
-pip install -r requirements.txt
-
-# now, we will install comfyui inside the repository
-comfy --workspace=./ComfyUI install
-```
-
-This will install comfyUI.
-
-
-Now, we will have to install some necessary extensions and update them
-
-To do so, ensure you run the node installation script. This will let us download custom extensions and custom nodes that we will need for the class
-
-```bash
-./setup.sh
-```
-
-
+=
 Once this step is finished, we are ready to get started. 
 
 
