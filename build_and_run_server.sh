@@ -20,7 +20,7 @@ civitdl https://civitai.com/models/299933/halcyon-sdxl-photorealism?modelVersion
 
 
 # Cd into workspace/ComfyUI/custom_nodes
-cd /workspace/learn_comfyui_apps/custom_nodes
+cd /workspace/learn_comfyui_apps/ComfyUI/custom_nodes
 
 # Git clone all the extensions
 # IPAdapter_plus
@@ -35,7 +35,7 @@ git clone https://github.com/cubiq/ComfyUI_InstantID.git
 
 
 # Cd back to ComfyUI directory
-cd ..
+cd /workspace/learn_comfyui_apps/ComfyUI/
 
 # Install dependencies for all extensions
 for dir in /workspace/learn_comfyui_apps/ComfyUI/custom_nodes/*; do

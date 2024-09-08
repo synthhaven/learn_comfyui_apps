@@ -11,7 +11,7 @@ import os
 from pydantic import BaseModel
 
 # We load our workflow here
-LINKEDIN_PHOTOMAKER_PATH = "/workspace/learn_comfyui_apps/app/workflows/linkedin_photomaker.json"
+LINKEDIN_PHOTOMAKER_PATH = "/workspace/learn_comfyui_apps/app/workflows/linkedin_photomaker_solution.json"
 # Server configuration
 SERVER_ADDRESS = "0.0.0.0:9000"
 SERVER_URL = f"http://{SERVER_ADDRESS}"
@@ -49,11 +49,14 @@ def run_workflow(workflow={}):
 # and the inputs, outputs and batch size for your workflow
 PHOTOMAKER_SPEC = {
     # positive prompt will map to
-    "unique_id": "74",
-    "identity_input" : "75",
-    "pose_input": "77", 
-    "image_style_positive_prompt": "3",
-    "batch_size_node" : "27",
+    "unique_id": "31",
+    # TWO IMAGES WE USED
+    "identity_input" : "29",
+    "pose_input": "30", 
+    ## THE PROMPT WE USED 
+    "image_style_positive_prompt": "6",
+    ## THE BATCH SIZE WE WERE USING.
+    "batch_size_node" : "5",
 }
 
 
