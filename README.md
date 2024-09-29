@@ -39,7 +39,7 @@ In order to run the server, run the commands
 
 ```bash
 cd app
-python run_photomaker.py
+python linkedin_photomaker.py
 ```
 
 Then, go to Runpod and click on **Connect**. You will see your application on port 9002.
