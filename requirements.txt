@@ -1,5 +1,5 @@
 comfy-cli
-gradio
+gradio==4.44.1
 Pillow
 requests
 websocket-client
