@@ -9,19 +9,27 @@ from PIL import Image
 import io
 import os
 from pydantic import BaseModel
+from config import (
+    get_workflow_file, 
+    get_comfyui_api_url, 
+    get_client_id,
+    config
+)
 
-# We load our workflow here
-LINKEDIN_PHOTOMAKER_PATH = "/workspace/learn_comfyui_apps/app/workflows/linkedin_photomaker_solution.json"
-# Server configuration
-SERVER_ADDRESS = "0.0.0.0:9000"
-SERVER_URL = f"http://{SERVER_ADDRESS}"
-RUN_WORKFLOW_URL = f"{SERVER_URL}/prompt"
-WS_SERVER_URL = f"ws://{SERVER_ADDRESS}/ws"
+# Load our workflow using configuration
+try:
+    WORKFLOW_FILE_PATH = get_workflow_file()
+    with open(WORKFLOW_FILE_PATH, "r") as f:
+        PHOTOMAKER_WORKFLOW = json.load(f)
+    print(f"Loaded workflow from: {WORKFLOW_FILE_PATH}")
+except FileNotFoundError:
+    print(f"Warning: Workflow file not found at {WORKFLOW_FILE_PATH}")
+    print("Please ensure ComfyUI workflow file exists at the expected location")
+    PHOTOMAKER_WORKFLOW = {}
 
-# Unique client ID for tracking the session
-DEFAULT_CLIENT_ID = "06a96135-59b2-4a29-b7c8-a83fc011ea63"
-with open(LINKEDIN_PHOTOMAKER_PATH, "r") as f:
-    PHOTOMAKER_WORKFLOW = json.load(f)
+# Server configuration from config
+RUN_WORKFLOW_URL = get_comfyui_api_url()
+DEFAULT_CLIENT_ID = get_client_id()
 
 # Function to run the workflow synchronously
 def run_workflow(workflow={}):
@@ -75,7 +83,6 @@ def format_input_to_photomaker(workflow, unique_id, identity_input, pose_input, 
     Returns:
         dict: The updated workflow dictionary.
     """
-    # Update the workflow with the provided inputs
     # We then modify our nodes with the inputs
     workflow[PHOTOMAKER_SPEC["identity_input"]]["inputs"]["image"] = identity_input
     workflow[PHOTOMAKER_SPEC["pose_input"]]["inputs"]["image"] = pose_input
@@ -86,7 +93,6 @@ def format_input_to_photomaker(workflow, unique_id, identity_input, pose_input, 
 
     # This step is very important. The unique_id lets us track generations
     workflow[PHOTOMAKER_SPEC["unique_id"]]["inputs"]["unique_id"] = unique_id
-
 
     return workflow
 
@@ -111,9 +117,13 @@ def run_photomaker_workflow(unique_id, identity_input, pose_input, image_style_p
     Returns:
         dict: A dictionary containing the workflow result, including the 'prompt_id' and any encountered errors.
     """
+    # Check if workflow is loaded
+    if not PHOTOMAKER_WORKFLOW:
+        return {"error": "Workflow not loaded. Please check workflow file path."}
+    
     # Format the workflow with the provided inputs
     updated_workflow = format_input_to_photomaker(
-        PHOTOMAKER_WORKFLOW, 
+        PHOTOMAKER_WORKFLOW.copy(), # Use a copy to avoid modifying the original
         unique_id, 
         identity_input, 
         pose_input, 
